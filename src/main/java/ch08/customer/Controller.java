@@ -1,4 +1,4 @@
-package ch05;
+package ch08.customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,13 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FirstServlet
+ * Servlet implementation class Controller
  */
-@WebServlet("/jw/ch05/first")
-public class FirstServlet extends HttpServlet {       
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Controller() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet() method 호출");
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

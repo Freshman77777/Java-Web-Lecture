@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Params
  */
-@WebServlet("/ch06/params")
+@WebServlet("/jw/ch06/params")
 public class Params extends HttpServlet {
 	private static final int DEFAULT_COUNT = 5;
 	private static final String[] FOOD_LIST = {"짜장면", "짬뽕", "짬짜면"};

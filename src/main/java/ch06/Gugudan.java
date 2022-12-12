@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Gugudan
  */
-@WebServlet("/ch06/gugudan")
+@WebServlet("/jw/ch06/gugudan")
 public class Gugudan extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

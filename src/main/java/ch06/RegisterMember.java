@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RegisterMember
  */
-@WebServlet("/ch06/regMember")
+@WebServlet("/jw/ch06/regMember")
 public class RegisterMember extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

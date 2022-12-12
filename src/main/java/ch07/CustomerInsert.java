@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CustomerInsert
  */
-@WebServlet("/ch07/registerCustomer")
+@WebServlet("/jw/ch07/registerCustomer")
 public class CustomerInsert extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

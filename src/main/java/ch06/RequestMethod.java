@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RequestMethod
  */
-@WebServlet("/ch06/reqMethod")
+@WebServlet("/jw/ch06/reqMethod")
 public class RequestMethod extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

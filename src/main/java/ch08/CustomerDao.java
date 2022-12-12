@@ -1,4 +1,4 @@
-package ch07;
+package ch08;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

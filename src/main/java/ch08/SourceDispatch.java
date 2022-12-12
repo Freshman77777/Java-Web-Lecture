@@ -1,6 +1,8 @@
-package ch07;
+package ch08;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,18 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CustomerDelete
+ * Servlet implementation class SourceDispatch
  */
-@WebServlet("/jw/ch07/deleteCustomer")
-public class CustomerDelete extends HttpServlet {
+@WebServlet("/ch08/src4")
+public class SourceDispatch extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String uid = request.getParameter("uid");
-		CustomerDao dao = new CustomerDao();
-		dao.deleteCustomer(uid);
-		
-		response.sendRedirect("/jw/ch07/customerList");
+		System.out.println("/ch08/src4 doGet()");
+		RequestDispatcher rd = request.getRequestDispatcher("/ch08/dst4?msg=한글");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

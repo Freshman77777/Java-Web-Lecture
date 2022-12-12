@@ -8,23 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CustomerDelete
+ * Servlet implementation class PlayerDelete
  */
-@WebServlet("/jw/ch07/deleteCustomer")
-public class CustomerDelete extends HttpServlet {
-	
+@WebServlet("/jw/ch07/deletePlayer")
+public class PlayerDelete extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String uid = request.getParameter("uid");
-		CustomerDao dao = new CustomerDao();
-		dao.deleteCustomer(uid);
+		String backNumber_ = request.getParameter("backNumber");
+		int backNumber = Integer.parseInt(backNumber_);
+		PlayerDao dao = new PlayerDao();
+		dao.deletePlayer(backNumber);
 		
-		response.sendRedirect("/jw/ch07/customerList");
+		response.sendRedirect("/jw/ch07/playerList");
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
 	}
 
 }
