@@ -1,6 +1,9 @@
 package ch08.customer;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,32 +13,64 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet("/Controller")
+@WebServlet({ "/jw/ch08/customer/list", "/jw/ch08/customer/register", "/jw/ch08/customer/update", "/jw/ch08/customer/delete" })
 public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Controller() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		String servletPath = request.getServletPath();
+		CustomerDao dao = new CustomerDao();
+		response.setContentType("text/html; charset=utf-8");
+		
+		if (servletPath.indexOf("list") > 0) {
+			List<Customer> list = dao.getCustomers();
+			request.setAttribute("customerList", list);
+			RequestDispatcher rd = request.getRequestDispatcher("/jw/ch08/customer/listView");
+			rd.forward(request, response);
+		} else if (servletPath.indexOf("register") > 0) {
+			response.sendRedirect("/jw/ch08/customer/register.html");
+		} else if (servletPath.indexOf("update") > 0) {
+			String uid = request.getParameter("uid");
+			Customer c = dao.getCustomer(uid);
+			request.setAttribute("customer", c);
+			RequestDispatcher rd = request.getRequestDispatcher("/jw/ch08/customer/updateView");
+			rd.forward(request, response);
+		} else if (servletPath.indexOf("delete") > 0) {
+			String uid = request.getParameter("uid");
+			dao.deleteCustomer(uid);
+			response.sendRedirect("/jw/ch08/customer/list");
+		} else {
+			System.out.println("Get 잘못된 경로");
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		String servletPath = request.getServletPath();
+		CustomerDao dao = new CustomerDao();
+		response.setContentType("text/html; charset=utf-8");
+		
+		if (servletPath.indexOf("register") > 0) {
+			String uid = request.getParameter("uid");
+			String uname = request.getParameter("uname");
+			
+			// 유효성 검증
+			Customer c = dao.getCustomer(uid);
+			if (c.getUid() != null)								// 기존 사용자가 있는 경우
+				response.sendRedirect("/jw/ch08/customer/register.html");
+			else {												// 기존 사용자가 없는 경우
+				c = new Customer(uid, uname);
+				dao.insertCustomer(c);
+				response.sendRedirect("/jw/ch08/customer/list");
+			}
+		} else if (servletPath.indexOf("update") > 0) {
+			String uid = request.getParameter("uid");
+			String uname = request.getParameter("uname");
+			
+			Customer c = new Customer(uid, uname);
+			dao.updateCustomer(c);
+			response.sendRedirect("/jw/ch08/customer/list");
+		} else {
+			System.out.println("Post 잘못된 경로");
+		}
 	}
-
 }

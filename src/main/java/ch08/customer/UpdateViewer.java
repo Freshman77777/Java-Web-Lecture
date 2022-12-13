@@ -1,4 +1,4 @@
-package ch08;
+package ch08.customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CustomerUpdateViewer
+ * Servlet implementation class UpdateViewer
  */
-@WebServlet("/jw/ch08/updateView")
-public class CustomerUpdateViewer extends HttpServlet {
+@WebServlet("/jw/ch08/customer/updateView")
+public class UpdateViewer extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -36,7 +36,7 @@ public class CustomerUpdateViewer extends HttpServlet {
 				+ "<body style=\"margin: 40px;\">"
 				+ "    <h1>회원 수정</h1>"
 				+ "    <hr>"
-				+ "    <form action=\"/jw/ch08/updateCustomer\" method=\"post\">";
+				+ "    <form action=\"/jw/ch08/customer/update\" method=\"post\">";
 		data += "<input type=\"hidden\" name=\"uid\" value=\"" + c.getUid() + "\">";
 		data += "        <table>"
 				+ "            <tr>"
@@ -59,11 +59,6 @@ public class CustomerUpdateViewer extends HttpServlet {
 				+ "</body>"
 				+ "</html>";
 		out.print(data);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
