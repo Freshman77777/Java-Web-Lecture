@@ -14,15 +14,13 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class SourceRedirect
  */
-@WebServlet("/jw/ch10/src")
+@WebServlet("/ch10/src")
 public class SourceRedirect extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("/ch10/src doGet()");
-		
+		System.out.println("SourceRedirect doGet()");
 		String msg = "SourceRedirect, 한글 메세지";
-		msg = URLEncoder.encode(msg, "utf-8");			// 주소창으로 한글을 보낼때는 반드시 인코딩을 해주어야 함
-
+		
 		response.sendRedirect("/jw/ch10/filterTest?msg=" + msg);
 	}
 
