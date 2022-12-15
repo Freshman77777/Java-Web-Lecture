@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
- * Servlet implementation class UserServiceController
+ * Servlet implementation class User2ServiceController
  */
 @WebServlet({ "/ch09/users/list", "/ch09/users/login", "/ch09/users/logout",
 			  "/ch09/users/register", "/ch09/users/update", "/ch09/users/delete" })
